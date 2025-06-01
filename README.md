@@ -1,124 +1,116 @@
-### 📄 `README.md`
+# 🍕 PizzaTech — Gestion de restaurant de pizzas
 
-```markdown
-# 🍕 PizzaTech — Gestion d’un restaurant de pizzas
+![CI Backend](https://github.com/Lucasmes93/pizzatech/actions/workflows/node-backend.yml/badge.svg)
 
-Projet réalisé en solo dans le cadre de l’évaluation technique du module Dev Fullstack.  
-Ce projet simule une application de gestion de pizzeria avec un frontend React et un backend Node.js.
+PizzaTech est une application fullstack permettant la gestion d’un menu de pizzas, à destination d’un restaurant. Il s’agit d’un projet solo intégrant un frontend moderne avec React et un backend Node.js connecté à une base SQLite via Prisma.
 
 ---
 
-## 🚀 Fonctionnalités
+## 🚀 Démo
 
-- 🖥️ Affichage des pizzas disponibles (client)
-- 🔧 Interface d'administration (CRUD pizzas)
-- 📦 API REST sécurisée avec Express
-- 📊 Base de données SQLite + Prisma ORM
-- ✅ Tests automatisés avec Jest + Supertest
-- ⚙️ Intégration continue via GitHub Actions
+- 🎯 Page d’accueil listant les pizzas disponibles
+- 🛠️ Interface admin pour ajouter, modifier et supprimer des pizzas
+- ✅ API RESTful + tests automatisés avec GitHub Actions
 
 ---
 
-## 🧱 Technologies utilisées
+## 🧱 Stack technique
 
-| Frontend       | Backend           | Outils                 |
-|----------------|-------------------|------------------------|
-| React + Vite   | Node.js + Express | GitHub Actions         |
-| Axios          | Prisma ORM        | pnpm / npm             |
-| React Router   | SQLite            | dotenv, Jest, Supertest|
+### Frontend
+- React + Vite
+- Sass Modules
+- Routing via `react-router-dom`
+
+### Backend
+- Node.js + Express
+- Prisma (ORM)
+- SQLite (base de données locale)
+- Supertest + `node:test` (tests)
+
+### CI/CD
+- GitHub Actions pour :
+  - Lancer les tests à chaque `push` ou `PR`
+  - Valider automatiquement la qualité du backend
 
 ---
 
-## 📁 Arborescence
+## 📁 Arborescence du projet
 
 ```
 
-PizzaTech/
+pizzatech/
 ├── backend/
 │   ├── src/
-│   │   ├── app.js
-│   │   ├── routes/
 │   │   ├── controllers/
-│   │   └── middleware/
-│   ├── tests/
+│   │   ├── middleware/
+│   │   ├── routes/
+│   │   ├── app.js
+│   │   └── server.js
 │   ├── prisma/
-│   └── .env.example
+│   │   └── schema.prisma
+│   ├── tests/
+│   │   └── pizza.test.js
+│   ├── package.json
+│   └── .env
 ├── frontend/
 │   ├── src/
-│   │   ├── pages/
+│   │   ├── api/
 │   │   ├── components/
-│   │   └── App.jsx
-│   └── .env.example
-├── .github/
-│   └── workflows/
-├── README.md
-└── package.json
+│   │   ├── pages/
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   ├── public/
+│   ├── package.json
+│   └── .env
+└── .github/
+└── workflows/
+└── node-backend.yml
 
 ````
 
 ---
 
-## 🛠️ Installation du projet
+## ⚙️ Installation
 
-### 📦 Prérequis
-- Node.js 20+
-- pnpm (`npm i -g pnpm`)
-- SQLite (intégré)
+### 1. Cloner le projet
 
-### 🔧 Backend
+```bash
+git clone https://github.com/Lucasmes93/pizzatech.git
+cd pizzatech
+````
+
+### 2. Lancer le backend
 
 ```bash
 cd backend
-cp .env.example .env
 pnpm install
 pnpm exec prisma db push
 pnpm run dev
-````
+```
 
-### 🖥️ Frontend
+> Le serveur Express sera accessible sur `http://localhost:4000`
+
+### 3. Lancer le frontend
 
 ```bash
 cd frontend
-cp .env.example .env
 pnpm install
 pnpm run dev
 ```
 
----
-
-## 🧪 Tests
-
-```bash
-cd backend
-pnpm run test
-```
-
-Tests réalisés avec Jest + Supertest (CRUD sur /api/pizzas)
+> L’application React sera accessible sur `http://localhost:5173`
 
 ---
 
-## 🔁 Intégration continue
+## 🔐 Fichiers `.env`
 
-GitHub Actions exécute automatiquement :
-
-* `pnpm install`
-* `pnpm exec prisma db push`
-* `pnpm run test`
-
-Workflow situé dans `.github/workflows/node-backend.yml`
-
----
-
-## 🔌 Variables d’environnement
-
-### 📄 backend/.env.example
+### backend/.env
 
 ```env
-PORT=4000
 DATABASE_URL="file:./dev.db"
 ```
 
-### 📄 frontend/.env.example
+### frontend/.env
 
 ```env
 VITE_API_URL=http://localhost:4000/api
@@ -126,20 +118,49 @@ VITE_API_URL=http://localhost:4000/api
 
 ---
 
-## 📸 Aperçu
+## 🧪 Tests (Backend)
 
-> (Ajoute ici des captures d’écran ou un GIF de l’interface Home + Admin)
+```bash
+cd backend
+pnpm run test
+```
+
+> Utilise `node:test` + `supertest` pour tester les routes de l'API
 
 ---
 
-## 🎥 Démo vidéo
+## 🤖 Intégration continue
 
-📺 Lien vers la démonstration : \[à insérer ici]
+Le fichier [`node-backend.yml`](.github/workflows/node-backend.yml) permet :
+
+* L'installation des dépendances backend
+* La génération de la base de données (via Prisma)
+* Le lancement des tests
+
+Badge de build :
+![CI Backend](https://github.com/Lucasmes93/pizzatech/actions/workflows/node-backend.yml/badge.svg)
 
 ---
 
-## 🧑 Auteur
+## 📸 Aperçu visuel
 
-Lucas MESSIA DOLIVEUX
-Projet personnel — 2025
+### Accueil
+
+* Affichage de toutes les pizzas disponibles
+* Header moderne avec navigation
+
+### Admin
+
+* Formulaire pour ajouter une pizza
+* Possibilité de modifier ou supprimer
+* Liste mise à jour dynamiquement après chaque action
+
+---
+
+## 👨‍💻 Auteur
+
+**Lucas MESSIA DOLIVEUX**
+Projet solo dans le cadre d’une évaluation de gestion de projet fullstack.
+
+---
 

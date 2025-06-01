@@ -19,7 +19,7 @@
 		"dev": "nodemon src/server.js",
 		"start": "node src/server.js",
 		"migrate": "prisma migrate dev",
-		"test": "cross-env NODE_ENV=test jest"
+		"test": "node --test"
 	},
 	"type": "module"
 }

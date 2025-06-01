@@ -1,30 +1,34 @@
 import request from 'supertest'
+import { test, before, after } from 'node:test'
+import assert from 'node:assert/strict'
 import app from '../src/app.js'
 import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-beforeAll(async () => {
+before(async () => {
     await prisma.pizza.deleteMany()
 })
 
-afterAll(async () => {
+after(async () => {
     await prisma.$disconnect()
 })
 
-describe('API /pizzas', () => {
-    it('GET /api/pizzas doit retourner [] vide au départ', async () => {
-        const res = await request(app).get('/api/pizzas')
-        expect(res.statusCode).toBe(200)
-        expect(res.body).toEqual([])
-    })
+test('GET /api/pizzas retourne [] vide au départ', async () => {
+    const res = await request(app).get('/api/pizzas')
+    assert.equal(res.statusCode, 200)
+    assert.deepEqual(res.body, [])
+})
 
-    it('POST /api/pizzas doit créer une pizza', async () => {
-        const res = await request(app)
-            .post('/api/pizzas')
-            .send({ name: 'Test Pizza', description: 'Juste un test', price: 9.9 })
+test('POST /api/pizzas crée une pizza', async () => {
+    const res = await request(app)
+        .post('/api/pizzas')
+        .send({
+            name: 'Test Pizza',
+            description: 'Une pizza de test',
+            price: 10.99
+        })
 
-        expect(res.statusCode).toBe(201)
-        expect(res.body).toHaveProperty('id')
-    })
+    assert.equal(res.statusCode, 201)
+    assert.ok(res.body.id)
 })

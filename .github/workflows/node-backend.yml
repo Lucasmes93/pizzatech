@@ -14,6 +14,9 @@ jobs:
       run:
         working-directory: backend
 
+    env:
+      DATABASE_URL: "file:./dev.db"
+
     steps:
       - name: Checkout du code
         uses: actions/checkout@v3

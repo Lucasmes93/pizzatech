@@ -143,9 +143,3 @@ VITE_API_URL=http://localhost:4000/api
 Lucas MESSIA DOLIVEUX
 Projet personnel — 2025
 
-```
-
----
-
-Souhaites-tu que je te génère aussi une version avec des captures d’écran (`README illustré`) ? Ou tu veux que je t’aide à filmer la vidéo démo ?
-```

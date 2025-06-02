@@ -12,7 +12,6 @@ export const createPizza = async (pizza) => {
     return res.data
 }
 
-// ✅ AJOUTE CECI :
 export const updatePizza = async (id, pizza) => {
     const res = await axios.put(`${API_URL}/pizzas/${id}`, pizza)
     return res.data

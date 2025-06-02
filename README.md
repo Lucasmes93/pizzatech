@@ -2,7 +2,7 @@
 
 ![CI Backend](https://github.com/Lucasmes93/pizzatech/actions/workflows/node-backend.yml/badge.svg)
 
-PizzaTech est une application fullstack permettant la gestion d’un menu de pizzas, à destination d’un restaurant. Il s’agit d’un projet solo intégrant un frontend moderne avec React et un backend Node.js connecté à une base SQLite via Prisma.
+PizzaTech est une application fullstack permettant la gestion d’un menu de pizzas pour un restaurant. Ce projet solo propose un frontend moderne (React/Vite), un backend Node.js/Express (Prisma/SQLite) et une configuration complète pour le développement avec ou sans Docker.
 
 ---
 
@@ -34,10 +34,33 @@ PizzaTech est une application fullstack permettant la gestion d’un menu de piz
 
 ---
 
+## 🐳 Lancer avec Docker
+
+Ce projet inclut une configuration Docker complète pour le développement :
+
+### 📦 Fichiers concernés
+- `backend/Dockerfile.backend`
+- `frontend/Dockerfile.frontend`
+- `docker-compose.yml`
+
+### ▶️ Lancer l’ensemble (frontend + backend)
+
+```bash
+docker-compose up --build
+````
+
+* **Frontend** : [http://localhost:5173](http://localhost:5173)
+* **Backend API** : [http://localhost:4000/api/pizzas](http://localhost:4000/api/pizzas)
+
+### ⚠️ Prérequis
+
+* [Docker Desktop](https://www.docker.com/products/docker-desktop/) installé
+
+---
+
 ## 📁 Arborescence du projet
 
 ```
-
 pizzatech/
 ├── backend/
 │   ├── src/
@@ -50,6 +73,7 @@ pizzatech/
 │   │   └── schema.prisma
 │   ├── tests/
 │   │   └── pizza.test.js
+│   ├── Dockerfile.backend
 │   ├── package.json
 │   └── .env
 ├── frontend/
@@ -59,25 +83,26 @@ pizzatech/
 │   │   ├── pages/
 │   │   ├── App.jsx
 │   │   ├── main.jsx
+│   ├── Dockerfile.frontend
 │   ├── public/
 │   ├── package.json
 │   └── .env
+├── docker-compose.yml
 └── .github/
-└── workflows/
-└── node-backend.yml
-
-````
+    └── workflows/
+        └── node-backend.yml
+```
 
 ---
 
-## ⚙️ Installation
+## ⚙️ Installation manuelle (hors Docker)
 
 ### 1. Cloner le projet
 
 ```bash
 git clone https://github.com/Lucasmes93/pizzatech.git
 cd pizzatech
-````
+```
 
 ### 2. Lancer le backend
 
@@ -102,7 +127,7 @@ pnpm run dev
 
 ---
 
-## 🔐 Fichiers `.env`
+## 🔐 Fichiers `.env` à personnaliser
 
 ### backend/.env
 
@@ -118,7 +143,7 @@ VITE_API_URL=http://localhost:4000/api
 
 ---
 
-## 🧪 Tests (Backend)
+## 🧪 Lancer les tests (Backend)
 
 ```bash
 cd backend
@@ -163,4 +188,3 @@ Badge de build :
 Projet solo dans le cadre d’une évaluation de gestion de projet fullstack.
 
 ---
-

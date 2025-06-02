@@ -1,4 +1,3 @@
-// frontend/src/pages/Home/Home.jsx
 import { useEffect, useState } from 'react'
 import { getPizzas } from '../../api/client'
 import styles from './Home.module.scss'
